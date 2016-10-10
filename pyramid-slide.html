@@ -16,8 +16,10 @@
 <body >
     <h1>Pyramid Slide!</h1>
     <br>
-    
-	<input type="range" id="slide" min="0" max="20" oninput="drawPyramid(this.value)">
+    <p>How high?</p>
+
+	<input type="range" id="slide" value="10" min="0" max="20" oninput="drawPyramid(this.value)" onchange="pyramidHeight.value = slide.value" >
+    <output id="pyramidHeight">10</output>
 
     <br><br>
 

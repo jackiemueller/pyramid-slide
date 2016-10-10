@@ -1,27 +1,28 @@
-document.getElementById("slide").addEventListener("input", drawPyramid);
- 
- function drawPyramid(height) {
+function drawPyramid(height) {
 
-  for (var y = 0; y < height; y++) {
-    var line = " ";
-    for (var x = 0; x < (height - 1 - y); x++) {
-      line += " ";
-    }
-    for (var i = (height - 1 - y); i < (height + 1); i++) {
-      line += "#";
-    }
-		document.getElementById("pyramid").innerHTML = line;
-  }
-};
-		// create a text element with the string of characters
-        textElem = document.createTextNode(line);
+    // first, clear the old content
+    document.getElementById("pyramid").innerHTML = "";
 
-        // create a <p> element with the text inside
+    // for each row....
+    for (var row = 0; row < height; row++) {
+
+        // figure out number of bricks and spaces
+        var numBricks = row + 2;
+        var numSpaces = height - row - 1;
+
+        // build up a string for this row
+        var rowStr = "";
+        for (var i = 0; i < numSpaces; i++) {
+            var spaceChar = "&nbsp"; // this is the HTML encoding for a space " "
+            rowStr += spaceChar;
+        }
+        for (var i = 0; i < numBricks; i++) {
+            rowStr += "#";
+        }
+
+        // make a <p> element for this row, and insert it into the #pyramid container
         rowElem = document.createElement("p");
-        rowElem.appendChild(textElem);
-
-        // insert the paragraph as a child of the container <div>
+        rowElem.innerHTML = rowStr;
         document.getElementById("pyramid").appendChild(rowElem);
-
-
-	document.getElementById("pyramid").innerHTML = drawPyramid(height);
+    }
+};
